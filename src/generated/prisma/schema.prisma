@@ -1,0 +1,73 @@
+generator client {
+  provider = "prisma-client-js" // Asegúrate de que diga esto
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Categoria {
+  id          Int     @id @default(autoincrement())
+  nombre      String
+  descripcion String? @db.Text
+
+  @@map("categorias")
+}
+
+model Cliente {
+  id       Int     @id @default(autoincrement())
+  nombre   String
+  telefono String?
+  correo   String?
+
+  @@map("clientes")
+}
+
+model Empleado {
+  id       Int     @id @default(autoincrement())
+  nombre   String
+  cargo    String?
+  telefono String?
+
+  @@map("empleados")
+}
+
+model Proveedor {
+  id        Int     @id @default(autoincrement())
+  nombre    String
+  contacto  String?
+  telefono  String?
+  direccion String? @db.Text
+
+  // Relación con la tabla intermedia ProveedorIngrediente
+  ingredientes ProveedorIngrediente[]
+
+  @@map("proveedores")
+}
+
+model ProveedorIngrediente {
+  id            Int @id @default(autoincrement())
+  proveedorId   Int
+  ingredienteId Int
+
+  // Relaciones
+  proveedor Proveedor @relation(fields: [proveedorId], references: [id], onDelete: Cascade)
+
+  ingrediente Ingrediente @relation(fields: [ingredienteId], references: [id], onDelete: Cascade)
+
+  @@unique([proveedorId, ingredienteId])
+  @@map("proveedor_ingredientes")
+}
+
+model Ingrediente {
+  id           Int    @id @default(autoincrement())
+  nombre       String
+  stockActual  Float  @map("stock_actual")
+  unidadMedida String @map("unidad_medida")
+
+  // Relación inversa hacia tu tabla intermedia
+  proveedores ProveedorIngrediente[]
+
+  @@map("ingredientes")
+}

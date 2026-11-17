@@ -2,6 +2,8 @@ import express from "express";
 import type { Application, Response, Request } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import proveedorRoutes from './routes/proveedor.routes';
+import proveedorIngredienteRoutes from './routes/proveedorIngrediente.routes';
 
 dotenv.config();
 
@@ -22,3 +24,6 @@ app.get("/", function (req: Request, res: Response) {
 app.listen(PORT, function () {
   console.log(`SERVIDOR CORRIENDO EN EL PUERTO http://localhost:${PORT}`);
 });
+
+app.use('/api/proveedores', proveedorRoutes);
+app.use('/api/proveedor-ingredientes', proveedorIngredienteRoutes);
