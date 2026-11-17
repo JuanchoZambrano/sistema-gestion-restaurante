@@ -6,3 +6,29 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+model Categoria {
+  id          Int     @id @default(autoincrement())
+  nombre      String
+  descripcion String? @db.Text
+
+  @@map("categorias")
+}
+
+model Cliente {
+  id       Int     @id @default(autoincrement())
+  nombre   String
+  telefono String?
+  correo   String?
+
+  @@map("clientes")
+}
+
+model Empleado {
+  id       Int     @id @default(autoincrement())
+  nombre   String
+  cargo    String?
+  telefono String?
+
+  @@map("empleados")
+}
