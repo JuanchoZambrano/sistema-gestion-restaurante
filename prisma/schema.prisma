@@ -9,7 +9,7 @@ datasource db {
 
 model Categoria {
   id          Int     @id @default(autoincrement())
-  nombre      String
+  nombre      String  @db.VarChar(100)
   descripcion String? @db.Text
 
   @@map("categorias")
@@ -17,18 +17,18 @@ model Categoria {
 
 model Cliente {
   id       Int     @id @default(autoincrement())
-  nombre   String
-  telefono String?
-  correo   String?
+  nombre   String  @db.VarChar(100)
+  telefono String? @db.VarChar(20)
+  correo   String  @unique @db.VarChar(120)
 
   @@map("clientes")
 }
 
 model Empleado {
   id       Int     @id @default(autoincrement())
-  nombre   String
-  cargo    String?
-  telefono String?
+  nombre   String  @db.VarChar(100)
+  cargo    String @db.VarChar(50)
+  telefono String? @db.VarChar(20)
 
   @@map("empleados")
 }

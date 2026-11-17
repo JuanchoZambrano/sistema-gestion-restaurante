@@ -4,6 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import proveedorRoutes from './routes/proveedor.routes';
 import proveedorIngredienteRoutes from './routes/proveedorIngrediente.routes';
+import clienteRoutes from "./routes/clienteRoutes"
 
 dotenv.config();
 
@@ -19,7 +20,7 @@ app.get("/", function (req: Request, res: Response) {
   });
 });
 
-// app.use("/", userRouter);
+app.use("/clientes", clienteRoutes);
 
 app.listen(PORT, function () {
   console.log(`SERVIDOR CORRIENDO EN EL PUERTO http://localhost:${PORT}`);
