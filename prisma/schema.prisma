@@ -12,6 +12,8 @@ model Categoria {
   nombre      String
   descripcion String? @db.Text
 
+  platos Plato[]
+
   @@map("categorias")
 }
 
@@ -31,4 +33,42 @@ model Empleado {
   telefono String?
 
   @@map("empleados")
+}
+
+model Plato {
+  id          Int     @id @default(autoincrement())
+  nombre      String
+  descripcion String? @db.Text
+  precio      Decimal @db.Decimal(10, 2)
+  disponible  Boolean @default(true)
+
+  categoriaId Int
+  categoria   Categoria @relation(fields: [categoriaId], references: [id])
+
+  ingredientes PlatoIngrediente[]
+
+  @@map("platos")
+}
+
+model Ingrediente {
+  id           Int     @id @default(autoincrement())
+  nombre       String
+  stock        Decimal @db.Decimal(10, 2)
+  unidadMedida String
+
+  platos PlatoIngrediente[]
+
+  @@map("ingredientes")
+}
+
+model PlatoIngrediente {
+  platoId       Int
+  ingredienteId Int
+  cantidad      Decimal @db.Decimal(10, 2)
+
+  plato       Plato       @relation(fields: [platoId], references: [id])
+  ingrediente Ingrediente @relation(fields: [ingredienteId], references: [id])
+
+  @@id([platoId, ingredienteId])
+  @@map("plato_ingrediente")
 }
