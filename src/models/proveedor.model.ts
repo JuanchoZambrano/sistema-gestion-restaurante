@@ -1,4 +1,4 @@
-import { prisma } from '../config/db';
+import { prisma } from "../services/prisma";
 
 export class ProveedorModel {
     static async obtenerTodos() {
