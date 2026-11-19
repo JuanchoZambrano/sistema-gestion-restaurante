@@ -8,3 +8,11 @@ export const obtenerPlatoIngredientes = async () => {
     }
   });
 };
+
+export const crearPlatoIngrediente = async (
+  data: any
+) => {
+  return await prisma.platoIngrediente.create({
+    data
+  });
+};

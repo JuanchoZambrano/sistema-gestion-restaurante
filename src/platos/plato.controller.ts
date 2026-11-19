@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { obtenerPlatos } from './plato.module';
+import { crearPlato } from './plato.module';
 
 export const getPlatos = async (
   req: Request,
@@ -12,6 +13,21 @@ export const getPlatos = async (
   } catch (error) {
     res.status(500).json({
       message: 'Error al obtener platos',
+    });
+  }
+};
+
+export const createPlato = async (
+  req: Request,
+  res: Response
+) => {
+  try {
+    const plato = await crearPlato(req.body);
+
+    res.status(201).json(plato);
+  } catch (error) {
+    res.status(500).json({
+      message: 'Error al crear plato'
     });
   }
 };
