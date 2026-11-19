@@ -1,6 +1,7 @@
 import type { Request, Response } from 'express';
 import { obtenerIngredientes } from './ingrediente.module';
 import { crearIngrediente } from './ingrediente.module';
+import { actualizarIngrediente } from './ingrediente.module';
 
 export const getIngredientes = async (
   req: Request,
@@ -30,6 +31,27 @@ export const createIngrediente = async (
   } catch (error) {
     res.status(500).json({
       message: 'Error al crear ingrediente'
+    });
+  }
+};
+
+export const updateIngrediente = async (
+  req: Request,
+  res: Response
+) => {
+  try {
+    const id = Number(req.params.id);
+
+    const ingrediente =
+      await actualizarIngrediente(
+        id,
+        req.body
+      );
+
+    res.status(200).json(ingrediente);
+  } catch (error) {
+    res.status(500).json({
+      message: 'Error al actualizar ingrediente'
     });
   }
 };

@@ -10,3 +10,14 @@ export const crearIngrediente = async (data: any) => {
   });
 };
 
+export const actualizarIngrediente = async (
+  id: number,
+  data: any
+) => {
+  return await prisma.ingrediente.update({
+    where: {
+      id
+    },
+    data
+  });
+};

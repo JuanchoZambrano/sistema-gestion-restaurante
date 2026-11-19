@@ -9,3 +9,15 @@ export const crearPlato = async (data: any) => {
     data
   });
 };
+
+export const actualizarPlato = async (
+  id: number,
+  data: any
+) => {
+  return await prisma.plato.update({
+    where: {
+      id
+    },
+    data
+  });
+};
