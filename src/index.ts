@@ -2,13 +2,15 @@ import express from "express";
 import type { Application, Response, Request } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import proveedorRoutes from './routes/proveedor.routes';
-import proveedorIngredienteRoutes from './routes/proveedorIngrediente.routes';
+import proveedorRoutes from "./routes/proveedor.routes";
+import proveedorIngredienteRoutes from "./routes/proveedorIngrediente.routes";
+import pedidoRoutes from "./routes/pedido.routes";
+import detallePedidoRoutes from "./routes/detallePedido.routes";
 
 dotenv.config();
 
 const app: Application = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
@@ -19,11 +21,11 @@ app.get("/", function (req: Request, res: Response) {
   });
 });
 
-// app.use("/", userRouter);
+app.use("/api/proveedores", proveedorRoutes);
+app.use("/api/proveedor-ingredientes", proveedorIngredienteRoutes);
+app.use("/api/pedidos", pedidoRoutes);
+app.use("/api/detalle-pedidos", detallePedidoRoutes);
 
 app.listen(PORT, function () {
   console.log(`SERVIDOR CORRIENDO EN EL PUERTO http://localhost:${PORT}`);
 });
-
-app.use('/api/proveedores', proveedorRoutes);
-app.use('/api/proveedor-ingredientes', proveedorIngredienteRoutes);
