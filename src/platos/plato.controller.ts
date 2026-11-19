@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { obtenerPlatos } from './plato.module';
 import { crearPlato } from './plato.module';
 import { actualizarPlato } from './plato.module';
+import { eliminarPlato } from './plato.module';
 
 export const getPlatos = async (
   req: Request,
@@ -50,6 +51,25 @@ export const updatePlato = async (
   } catch (error) {
     res.status(500).json({
       message: 'Error al actualizar plato'
+    });
+  }
+};
+
+export const deletePlato = async (
+  req: Request,
+  res: Response
+) => {
+  try {
+    const id = Number(req.params.id);
+
+    await eliminarPlato(id);
+
+    res.status(200).json({
+      message: 'Plato eliminado correctamente'
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: 'Error al eliminar plato'
     });
   }
 };

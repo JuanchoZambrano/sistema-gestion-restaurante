@@ -21,3 +21,13 @@ export const actualizarIngrediente = async (
     data
   });
 };
+
+export const eliminarIngrediente = async (
+  id: number
+) => {
+  return await prisma.ingrediente.delete({
+    where: {
+      id
+    }
+  });
+};

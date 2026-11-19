@@ -2,6 +2,7 @@ import type { Request, Response } from 'express';
 import { obtenerIngredientes } from './ingrediente.module';
 import { crearIngrediente } from './ingrediente.module';
 import { actualizarIngrediente } from './ingrediente.module';
+import { eliminarIngrediente } from './ingrediente.module';
 
 export const getIngredientes = async (
   req: Request,
@@ -52,6 +53,25 @@ export const updateIngrediente = async (
   } catch (error) {
     res.status(500).json({
       message: 'Error al actualizar ingrediente'
+    });
+  }
+};
+
+export const deleteIngrediente = async (
+  req: Request,
+  res: Response
+) => {
+  try {
+    const id = Number(req.params.id);
+
+    await eliminarIngrediente(id);
+
+    res.status(200).json({
+      message: 'Ingrediente eliminado correctamente'
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: 'Error al eliminar ingrediente'
     });
   }
 };

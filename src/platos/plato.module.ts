@@ -21,3 +21,13 @@ export const actualizarPlato = async (
     data
   });
 };
+
+export const eliminarPlato = async (
+  id: number
+) => {
+  return await prisma.plato.delete({
+    where: {
+      id
+    }
+  });
+};
