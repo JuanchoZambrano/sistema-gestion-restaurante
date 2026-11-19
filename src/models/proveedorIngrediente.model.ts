@@ -1,4 +1,4 @@
-import { prisma } from '../services/prisma';
+import { prisma } from "../services/prisma";
 
 export class ProveedorIngredienteModel {
     // Listar todas las asociaciones entre proveedores e ingredientes

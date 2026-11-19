@@ -1,6 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
+  provider = "prisma-client"
+  output   = "../generated/prisma"
 }
 
 datasource db {
@@ -9,7 +9,7 @@ datasource db {
 
 model Categoria {
   id          Int     @id @default(autoincrement())
-  nombre      String
+  nombre      String  @db.VarChar(100)
   descripcion String? @db.Text
   platos      Plato[]
 
