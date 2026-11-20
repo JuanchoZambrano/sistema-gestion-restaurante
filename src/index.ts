@@ -52,3 +52,4 @@ app.use("/api/proveedor-ingredientes", verificarToken, autorizarRoles("GERENTE")
 app.listen(PORT, function () {
   console.log(`SERVIDOR CORRIENDO EN EL PUERTO http://localhost:${PORT}`);
 });
+//si corre
