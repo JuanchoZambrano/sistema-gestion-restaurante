@@ -1,8 +1,10 @@
 import { Router } from 'express';
-import { getIngredientes } from './ingrediente.controller';
-import {createIngrediente} from './ingrediente.controller';
-import { updateIngrediente } from './ingrediente.controller';
-import { deleteIngrediente } from './ingrediente.controller';
+import {
+  getIngredientes,
+  createIngrediente,
+  updateIngrediente,
+  deleteIngrediente,
+} from '../controllers/ingrediente.controller';
 
 const router: Router = Router();
 

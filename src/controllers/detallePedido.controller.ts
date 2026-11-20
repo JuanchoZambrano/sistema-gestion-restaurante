@@ -8,8 +8,9 @@ async function recalcularTotalPedido(pedidoId: number) {
     where: { pedidoId },
   });
 
-  const total = detalles.reduce(
-    (acc, item) => acc + item.cantidad * Number(item.precioUnitario),
+  const total = detalles.reduce<number>(
+    (acc: number, item: { cantidad: number; precioUnitario: unknown }) =>
+      acc + item.cantidad * Number(item.precioUnitario),
     0
   );
 
