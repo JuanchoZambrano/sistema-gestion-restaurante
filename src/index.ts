@@ -23,7 +23,7 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.get("/", function (req: Request, res: Response) {
   /* 
@@ -45,7 +45,7 @@ app.use("/api/detalle-pedidos", detallePedidoRoutes);
 app.use('/platos', platoRouter);
 app.use('/ingredientes', ingredienteRouter);
 app.use('/plato-ingredientes', platoIngredienteRouter);
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 app.listen(PORT, function () {
   console.log(`SERVIDOR CORRIENDO EN EL PUERTO http://localhost:${PORT}`);
 });
