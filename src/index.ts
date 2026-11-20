@@ -25,6 +25,8 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 app.get("/", function (req: Request, res: Response) {
   res.json({
     mensaje: "API funcionando.",
@@ -37,8 +39,13 @@ app.use("/api/auth", authRoutes);
 app.use("/clientes", clienteRoutes);
 app.use("/empleados", empleadoRoutes);
 app.use("/categorias", categoriaRoutes);
-app.use("/api/platos", platoRouter);
-app.use("/api/plato-ingredientes", platoIngredienteRouter);
+app.use("/api/proveedores", proveedorRoutes);
+app.use("/api/proveedor-ingredientes", proveedorIngredienteRoutes);
+app.use("/api/pedidos", pedidoRoutes);
+app.use("/api/detalle-pedidos", detallePedidoRoutes);
+app.use('/platos', platoRouter);
+app.use('/ingredientes', ingredienteRouter);
+app.use('/plato-ingredientes', platoIngredienteRouter);
 app.use("/api/ingredientes", ingredienteRoutes);
 
 // Mesero y Gerente: pedidos y detalles

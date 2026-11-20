@@ -2,13 +2,21 @@ import { prisma } from "../services/prisma";
 
 export const getEmpleadosModel = async () => {
   return await prisma.empleado.findMany({
+    where: {status: "ACTIVE"},
     orderBy: { id: "asc" },
   });
 };
 
+export const getInactiveEmpleadosModel = async () => {
+  return await prisma.empleado.findMany({
+    where: {status: "INACTIVE"},
+    orderBy: { id: "asc" },
+  });
+}
+
 export const getEmpleadoByIdModel = async (id: number) => {
   return await prisma.empleado.findUnique({
-    where: { id },
+    where: { id, status: "ACTIVE" },
   });
 };
 
@@ -28,7 +36,11 @@ export const createEmpleadoModel = async (
 
 export const updateEmpleadoByIdModel = async (
   id: number,
-  data: { nombre: string; cargo: string; telefono: string },
+  data: {
+    nombre?: string;
+    cargo?: string;
+    telefono?: string;
+  },
 ) => {
     return await prisma.empleado.update({
         where: {id},
@@ -40,3 +52,10 @@ export const updateEmpleadoByIdModel = async (
         }
     })
 };
+
+export const deactivateEmpleadoById = async (id: number) => {
+  return await prisma.empleado.update({
+    where: {id},
+    data: {status: "INACTIVE"}
+  })
+}
