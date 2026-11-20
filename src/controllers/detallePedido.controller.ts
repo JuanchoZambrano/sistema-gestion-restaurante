@@ -20,6 +20,11 @@ async function recalcularTotalPedido(pedidoId: number) {
 }
 
 export const obtenerDetallePedidos = async (req: Request, res: Response) => {
+  /*
+    #swagger.tags = ['Detalles Pedidos']
+    #swagger.summary = 'Consultar detalles de los pedidos'
+    #swagger.description = 'Obtiene todos detalles de los pedidos registrados.'
+  */
   try {
     const detalles = await DetallePedidoModel.obtenerTodos();
     return res.status(200).json(detalles);
@@ -29,6 +34,11 @@ export const obtenerDetallePedidos = async (req: Request, res: Response) => {
 };
 
 export const obtenerDetallePedidoPorId = async (req: Request, res: Response) => {
+  /*
+    #swagger.tags = ['Detalles Pedidos']
+    #swagger.summary = 'Buscar detalles de un pedido por su ID.'
+    #swagger.description = 'Ingresa el ID para obtener los detalles del pedido.'
+  */
   try {
     const id = Number(req.params.id);
     const detalle = await DetallePedidoModel.obtenerPorId(id);
@@ -44,6 +54,11 @@ export const obtenerDetallePedidoPorId = async (req: Request, res: Response) => 
 };
 
 export const crearDetallePedido = async (req: Request, res: Response) => {
+  /*
+    #swagger.tags = ['Detalles Pedidos']
+    #swagger.summary = 'Crear detalles de un pedido'
+    #swagger.description = 'Crea los detalles de un pedido.'
+  */
   try {
     const { pedidoId, platoId, cantidad, precioUnitario } = req.body;
 
@@ -73,6 +88,11 @@ export const crearDetallePedido = async (req: Request, res: Response) => {
 };
 
 export const actualizarDetallePedido = async (req: Request, res: Response) => {
+  /*
+    #swagger.tags = ['Detalles Pedidos']
+    #swagger.summary = 'Actualizar detalles de un pedido'
+    #swagger.description = 'Ingresa el ID del pedido para actualizarlo.'
+  */
   try {
     const id = Number(req.params.id);
     const detalleActualizado = await DetallePedidoModel.actualizar(id, req.body);
@@ -86,6 +106,11 @@ export const actualizarDetallePedido = async (req: Request, res: Response) => {
 };
 
 export const eliminarDetallePedido = async (req: Request, res: Response) => {
+  /*
+    #swagger.tags = ['Detalles Pedidos']
+    #swagger.summary = 'Eliminar detalles de un pedido'
+    #swagger.description = 'Ingresa el ID del pedido para eliminarlo.'
+  */
   try {
     const id = Number(req.params.id);
     const detalle = await DetallePedidoModel.obtenerPorId(id);

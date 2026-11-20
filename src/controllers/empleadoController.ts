@@ -11,6 +11,11 @@ import {
 } from "../schemas/empleadoSchema";
 
 export async function getEmpleados(req: Request, res: Response) {
+  /*
+    #swagger.tags = ['Empleados']
+    #swagger.summary = 'Consultar empleados'
+    #swagger.description = 'Obtiene todos los empleados registrados.'
+  */
   try {
     const empleados = await getEmpleadosModel();
     res.status(200).json({ data: empleados });
@@ -24,6 +29,11 @@ export async function getEmpleados(req: Request, res: Response) {
 }
 
 export async function createEmpleado(req: Request, res: Response) {
+  /*
+    #swagger.tags = ['Empleados']
+    #swagger.summary = 'Crear empleado'
+    #swagger.description = 'Crea un empleado.'
+  */
   try {
     const validation = createEmpleadoSchema.safeParse(req.body);
 
@@ -61,6 +71,11 @@ export async function createEmpleado(req: Request, res: Response) {
 }
 
 export async function getEmpleadoById(req: Request, res: Response) {
+  /*
+    #swagger.tags = ['Empleados']
+    #swagger.summary = 'Buscar empleado por su ID.'
+    #swagger.description = 'Ingresa el ID para obtener el empleado.'
+  */
   try {
     const empleadoId = Number(req.params.id);
 
@@ -88,6 +103,11 @@ export async function getEmpleadoById(req: Request, res: Response) {
 }
 
 export async function updateEmpleado(req: Request, res: Response) {
+  /*
+    #swagger.tags = ['Empleados']
+    #swagger.summary = 'Actualizar un empleado'
+    #swagger.description = 'Ingresa el ID del empleado para actualizarlo.'
+  */
   try {
     const empleadoId = Number(req.params.id);
 
