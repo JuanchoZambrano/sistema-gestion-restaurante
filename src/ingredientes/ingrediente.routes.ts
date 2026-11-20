@@ -1,11 +1,16 @@
 import { Router } from 'express';
-import { getIngredientes } from './ingrediente.controller';
-import {createIngrediente} from './ingrediente.controller';
-import { updateIngrediente } from './ingrediente.controller';
-import { deleteIngrediente } from './ingrediente.controller';
+import {
+  getIngredientes,
+  createIngrediente,
+  updateIngrediente,
+  deleteIngrediente,
+  consultarStockIngredientes,
+} from './ingrediente.controller';
+import { verificarToken, autorizarRoles } from '../middlewares/auth.middleware';
 
 const router: Router = Router();
 
+router.get('/stock', verificarToken, autorizarRoles('GERENTE'), consultarStockIngredientes);
 router.get('/', getIngredientes);
 router.post('/', createIngrediente);
 router.put('/:id', updateIngrediente);

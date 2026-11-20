@@ -30,8 +30,14 @@ export const verificarToken = (req: Request, res: Response, next: NextFunction) 
 
   const token = authHeader.split(" ")[1];
 
+  if (!token) {
+    return res.status(401).json({
+      mensaje: "Acceso denegado. Token mal formado",
+    });
+  }
+
   try {
-    const decoded = jwt.verify(token, JWT_SECRET) as JwtPayloadUsuario;
+    const decoded = jwt.verify(token, JWT_SECRET) as unknown as JwtPayloadUsuario;
     req.usuario = decoded;
     next();
   } catch (error) {
@@ -40,7 +46,6 @@ export const verificarToken = (req: Request, res: Response, next: NextFunction) 
     });
   }
 };
-
 export const autorizarRoles = (...rolesPermitidos: RolUsuario[]) => {
   return (req: Request, res: Response, next: NextFunction) => {
     if (!req.usuario) {
