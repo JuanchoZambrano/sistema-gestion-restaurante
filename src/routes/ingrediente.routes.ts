@@ -3,7 +3,7 @@ import {
   getIngredientes,
   createIngrediente,
   updateIngrediente,
-  deleteIngrediente
+  deleteIngrediente,
 } from '../controllers/ingrediente.controller';
 
 const router: Router = Router();
