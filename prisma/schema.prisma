@@ -13,6 +13,8 @@ model Categoria {
   descripcion String? @db.Text
   platos      Plato[]
 
+  platos Plato[]
+
   @@map("categorias")
 }
 
@@ -36,6 +38,21 @@ model Empleado {
   @@map("empleados")
 }
 
+
+model Plato {
+  id          Int     @id @default(autoincrement())
+  nombre      String
+  descripcion String? @db.Text
+  precio      Decimal @db.Decimal(10, 2)
+  disponible  Boolean @default(true)
+
+  categoriaId Int
+  categoria   Categoria @relation(fields: [categoriaId], references: [id])
+
+  ingredientes PlatoIngrediente[]
+
+  @@map("platos")
+  
 model Proveedor {
   id          Int     @id @default(autoincrement())
   nombre      String
@@ -60,18 +77,39 @@ model ProveedorIngrediente {
 
   @@unique([proveedorId, ingredienteId])
   @@map("proveedor_ingredientes")
+
 }
 
 model Ingrediente {
   id           Int     @id @default(autoincrement())
   nombre       String
+
+  stock        Decimal @db.Decimal(10, 2)
+  unidadMedida String
+
+  platos PlatoIngrediente[]
+
   stockActual  Float   @map("stock_actual")
   unidadMedida String  @map("unidad_medida")
 
   // Relación inversa hacia tu tabla intermedia
   proveedores ProveedorIngrediente[]
 
+
   @@map("ingredientes")
+}
+
+
+model PlatoIngrediente {
+  platoId       Int
+  ingredienteId Int
+  cantidad      Decimal @db.Decimal(10, 2)
+
+  plato       Plato       @relation(fields: [platoId], references: [id])
+  ingrediente Ingrediente @relation(fields: [ingredienteId], references: [id])
+
+  @@id([platoId, ingredienteId])
+  @@map("plato_ingrediente")
 }
 
 model Plato {
@@ -115,3 +153,4 @@ model DetallePedido {
 
   @@map("detalle_pedidos")
 }
+

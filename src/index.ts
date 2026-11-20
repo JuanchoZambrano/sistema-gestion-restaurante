@@ -2,6 +2,9 @@ import express from "express";
 import type { Application, Response, Request } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import platoRouter from './platos/plato.routes'; // === RUTAS MIGUEL (PLATOS) ===
+import ingredienteRouter from './ingredientes/ingrediente.routes'; // === RUTAS MIGUEL (INGREDIENTES) ===
+import platoIngredienteRouter from './platoIngredientes/platoIngrediente.routes'; // === RUTAS MIGUEL (PLATO-INGREDIENTES) ===
 import swaggerUi from "swagger-ui-express";
 import swaggerDocument from "../swagger-output.json";
 import proveedorRoutes from "./routes/proveedor.routes";
@@ -20,7 +23,7 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 
 app.get("/", function (req: Request, res: Response) {
   /* 
@@ -39,7 +42,10 @@ app.use("/api/proveedores", proveedorRoutes);
 app.use("/api/proveedor-ingredientes", proveedorIngredienteRoutes);
 app.use("/api/pedidos", pedidoRoutes);
 app.use("/api/detalle-pedidos", detallePedidoRoutes);
-
+app.use('/platos', platoRouter);
+app.use('/ingredientes', ingredienteRouter);
+app.use('/plato-ingredientes', platoIngredienteRouter);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.listen(PORT, function () {
   console.log(`SERVIDOR CORRIENDO EN EL PUERTO http://localhost:${PORT}`);
 });
