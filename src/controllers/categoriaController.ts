@@ -11,6 +11,11 @@ import {
 } from "../schemas/categoriaSchema";
 
 export async function getCategorias(req: Request, res: Response) {
+  /*
+    #swagger.tags = ['Categorias']
+    #swagger.summary = 'Consultar categorías'
+    #swagger.description = 'Obtiene todas las categorías registradas.'
+  */
   try {
     const categorias = await getCategoriasModel();
     res.status(200).json({ data: categorias });
@@ -24,6 +29,11 @@ export async function getCategorias(req: Request, res: Response) {
 }
 
 export async function createCategoria(req: Request, res: Response) {
+  /*
+    #swagger.tags = ['Categorias']
+    #swagger.summary = 'Crear categoría'
+    #swagger.description = 'Crea una categoria.'
+  */
   try {
     const validation = createCategoriaSchema.safeParse(req.body);
 
@@ -61,6 +71,11 @@ export async function createCategoria(req: Request, res: Response) {
 }
 
 export async function getCategoriaById(req: Request, res: Response) {
+  /*
+    #swagger.tags = ['Categorias']
+    #swagger.summary = 'Buscar categoria por su ID.'
+    #swagger.description = 'Ingresa el ID para obtener la categoria.'
+  */
   try {
     const categoriaId = Number(req.params.id);
 
@@ -88,6 +103,11 @@ export async function getCategoriaById(req: Request, res: Response) {
 }
 
 export async function updateCategoria(req: Request, res: Response) {
+  /*
+    #swagger.tags = ['Categorias']
+    #swagger.summary = 'Actualizar una categoria'
+    #swagger.description = 'Ingresa el ID de la categoria para actualizarla.'
+  */
   try {
     const categoriaFindId = Number(req.params.id);
 

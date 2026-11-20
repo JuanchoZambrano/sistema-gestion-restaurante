@@ -11,6 +11,11 @@ import {
 } from "../schemas/clienteSchema";
 
 export async function getClientes(req: Request, res: Response) {
+  /*
+    #swagger.tags = ['Clientes']
+    #swagger.summary = 'Consultar clientes'
+    #swagger.description = 'Obtiene todos los clientes registrados.'
+  */
   try {
     const clientes = await getClientesModel();
     res.status(200).json({ data: clientes });
@@ -24,6 +29,11 @@ export async function getClientes(req: Request, res: Response) {
 }
 
 export async function createCliente(req: Request, res: Response) {
+  /*
+    #swagger.tags = ['Clientes']
+    #swagger.summary = 'Crear cliente'
+    #swagger.description = 'Crea un cliente.'
+  */
   try {
     const validation = createClienteSchema.safeParse(req.body);
 
@@ -61,6 +71,11 @@ export async function createCliente(req: Request, res: Response) {
 }
 
 export async function getClienteById(req: Request, res: Response) {
+  /*
+    #swagger.tags = ['Clientes']
+    #swagger.summary = 'Buscar cliente por su ID.'
+    #swagger.description = 'Ingresa el ID para obtener el cliente.'
+  */
   try {
     const clienteId = Number(req.params.id);
 
@@ -88,6 +103,11 @@ export async function getClienteById(req: Request, res: Response) {
 }
 
 export async function updateCliente(req: Request, res: Response) {
+  /*
+    #swagger.tags = ['Clientes']
+    #swagger.summary = 'Actualizar un cliente'
+    #swagger.description = 'Ingresa el ID del cliente para actualizarlo.'
+  */
   try {
     const clienteFindId = Number(req.params.id);
 
