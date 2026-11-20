@@ -1,6 +1,8 @@
 import { Router } from 'express';
-import { getPlatoIngredientes } from './platoIngrediente.controller';
-import { createPlatoIngrediente } from './platoIngrediente.controller';
+import {
+  getPlatoIngredientes,
+  createPlatoIngrediente
+} from '../controllers/platoIngrediente.controller';
 
 const router: Router = Router();
 

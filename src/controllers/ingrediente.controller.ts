@@ -1,8 +1,10 @@
 import type { Request, Response } from 'express';
-import { obtenerIngredientes } from './ingrediente.module';
-import { crearIngrediente } from './ingrediente.module';
-import { actualizarIngrediente } from './ingrediente.module';
-import { eliminarIngrediente } from './ingrediente.module';
+import {
+  obtenerIngredientes,
+  crearIngrediente,
+  actualizarIngrediente,
+  eliminarIngrediente
+} from '../models/ingrediente.model';
 
 export const getIngredientes = async (
   req: Request,

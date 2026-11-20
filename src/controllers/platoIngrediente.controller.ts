@@ -1,6 +1,8 @@
 import type { Request, Response } from 'express';
-import { obtenerPlatoIngredientes } from './platoIngrediente.module';
-import { crearPlatoIngrediente } from './platoIngrediente.module';
+import {
+  obtenerPlatoIngredientes,
+  crearPlatoIngrediente
+} from '../models/platoIngrediente.model';
 
 export const getPlatoIngredientes = async (
   req: Request,

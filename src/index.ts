@@ -2,9 +2,9 @@ import express from "express";
 import type { Application, Response, Request } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import platoRouter from './platos/plato.routes'; // === RUTAS MIGUEL (PLATOS) ===
-import ingredienteRouter from './ingredientes/ingrediente.routes'; // === RUTAS MIGUEL (INGREDIENTES) ===
-import platoIngredienteRouter from './platoIngredientes/platoIngrediente.routes'; // === RUTAS MIGUEL (PLATO-INGREDIENTES) ===
+import platoRouter from './routes/plato.routes';
+import ingredienteRouter from './routes/ingrediente.routes';
+import platoIngredienteRouter from './routes/platoIngrediente.routes';
 import swaggerUi from "swagger-ui-express";
 import swaggerDocument from "../swagger-output.json";
 import proveedorRoutes from "./routes/proveedor.routes";

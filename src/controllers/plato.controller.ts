@@ -1,8 +1,10 @@
 import { Request, Response } from 'express';
-import { obtenerPlatos } from './plato.module';
-import { crearPlato } from './plato.module';
-import { actualizarPlato } from './plato.module';
-import { eliminarPlato } from './plato.module';
+import {
+  obtenerPlatos,
+  crearPlato,
+  actualizarPlato,
+  eliminarPlato
+} from '../models/plato.model';
 
 export const getPlatos = async (
   req: Request,
