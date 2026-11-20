@@ -115,3 +115,20 @@ model DetallePedido {
 
   @@map("detalle_pedidos")
 }
+
+enum Rol {
+  MESERO
+  GERENTE
+}
+
+model Usuario {
+  id        Int      @id @default(autoincrement())
+  nombre    String
+  correo    String   @unique
+  password  String
+  rol       Rol      @default(MESERO)
+  activo    Boolean  @default(true)
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("usuarios")
+}
